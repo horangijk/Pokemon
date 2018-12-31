@@ -1,0 +1,2 @@
+module PokeballsHelper
+end

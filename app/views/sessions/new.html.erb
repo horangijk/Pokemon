@@ -1,0 +1,7 @@
+<%= form_with url: sessions_path, local: true do |f| %>
+<%= f.label :username %>
+<%= f.text_field :username %><br>
+<%= f.label :password %>
+<%= f.password_field :password %> <!-- should be password but on the new page of users we used  password_digest so we are using it here--><br>
+<%= f.submit "Login" %>
+<% end %>

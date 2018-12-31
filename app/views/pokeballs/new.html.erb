@@ -1,0 +1,7 @@
+<h1>New Pokeball Form</h1>
+
+<%= form_for @pokeball do |f| %>
+<%= f.collection_select :pokemon_id, Pokemon.all, :id, :name %><br>
+<%= f.collection_select :user_id, User.all, :id, :username %><br>
+<%= f.submit %>
+<% end %>

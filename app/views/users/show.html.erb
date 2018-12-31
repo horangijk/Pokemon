@@ -1,0 +1,19 @@
+<h1>This is <%= @user.username %>'s Page </h1>
+
+<h3>These are all of <%= @user.username %>'s Pokemon:</h3>
+<ul>
+  <% @user.pokemons.each do |pokemon| %>
+    <li>
+      <%= link_to pokemon.name, pokemon %>
+    </li>
+  <% end %>
+</ul>
+<br>
+<%= link_to "Add Pokemon", new_pokeball_path %>
+<br>
+<%= link_to "Edit User", edit_user_path %>
+<br>
+
+<%= form_tag user_path(@user), method: "delete" do %>
+  <%= submit_tag "Delete User" %>
+<% end %>
