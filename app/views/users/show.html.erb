@@ -1,19 +1,32 @@
 <h1>This is <%= @user.username %>'s Page </h1>
 
 <h3>These are all of <%= @user.username %>'s Pokemon:</h3>
+<% if @user.img_url %>
+<img src= <%= @user.img_url %> >
+<% else %>
+<% end %>
 <ul>
-  <% @user.pokemons.each do |pokemon| %>
+  <% @user.pokeballs.each do |pokeball| %>
     <li>
-      <%= link_to pokemon.name, pokemon %>
+      <%= link_to pokeball.pokemon.name, pokeball.pokemon %>
+      <%= form_tag pokeball_path(pokeball), method: "delete" do %>
+      <% if @user.id == session[:user_id] %>
+        <%= submit_tag "Release Pokemon" %>
+      <% end %>
+      <% end %>
     </li>
   <% end %>
 </ul>
 <br>
 <%= link_to "Add Pokemon", new_pokeball_path %>
 <br>
+<% if @user.id == session[:user_id] %>
 <%= link_to "Edit User", edit_user_path %>
+<% end %>
 <br>
 
 <%= form_tag user_path(@user), method: "delete" do %>
-  <%= submit_tag "Delete User" %>
+  <% if @user.id == session[:user_id] %>
+    <%= submit_tag "Delete User" %>
+  <% end %>
 <% end %>

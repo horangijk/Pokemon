@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params)
     if @user.save
-      session["user_id"] = @user_id
+      log_in!(@user)
       redirect_to "/users"
     else
       flash[:errors] = @user.errors.full_messages
@@ -29,6 +29,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user == @logged_in_user
+      redirect_to users_path
+    end
   end
 
   def update
@@ -43,15 +46,17 @@ class UsersController < ApplicationController
 
   def destroy
     User.destroy(params[:id])
+    reset_session
     redirect_to users_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :username, :password)
+    params.require(:user).permit(:name, :username, :password, :img_url)
   end
 
   def authenticate
+
     redirect_to new_session_path unless logged_in?
   end
 

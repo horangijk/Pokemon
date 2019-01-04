@@ -1,5 +1,5 @@
-<h1>This is <%= @pokemon.name %>'s Page: </h1>
-
+<h1>This is <%= @pokemon.name %>'s Page </h1>
+<img src= <%= @pokemon.imgurl %> >
 <h3>These are all of its Trainers:</h3>
 
 <ul>
@@ -9,9 +9,9 @@
 </ul>
 
 <h3>These are all of <%= @pokemon.name %>'s moves:</h3>
-<br>
+
 <ul>
   <% @pokemon.moves.each do |move| %>
-  <li><%= move.name %></li>
+  <li><%= move.name %> (<%= move.move_type %>)</li>
   <% end %>
 </ul>

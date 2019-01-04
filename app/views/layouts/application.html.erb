@@ -4,17 +4,29 @@
     <title>PokemonAsh</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <div class="bg">
+
     <header>
       <% if @logged_in_user %>
         <%= @logged_in_user.username %>
+        <% else %>
+        <%= link_to "New User", new_user_path %>
+      <% end %>
+      <br>
+      <%= link_to "User Index", users_path %><br>
+      <%= link_to "Pokemon Index", pokemons_path %><br>
+      <% if @logged_in_user %>
+        <%= button_to "Logout", logout_path, method: :get %><br>
+      <% else %>
+        <%= button_to "Login Page", login_path %><br>
       <% end %>
       <% if @errors %>
+
       <ul>
         <% @errors.each do |error| %>
         <li>
@@ -23,7 +35,13 @@
         <% end %>
       </ul>
       <% end %>
+
     </header>
-    <%= yield %>
+
+    <div class="body-container">
+      <%= yield %>
+    </div>
+
+  </div>
   </body>
 </html>

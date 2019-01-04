@@ -1,5 +1,5 @@
 class PokemonsController < ApplicationController
-  before_action :authenticate, only: [:edit, :destroy]
+  before_action :authenticate, only: [:edit, :destroy] #Everytime I edit or delete user, it goes back to sessions/new. Why is that? session[:user_id] is nil.
   def index
     @pokemons = Pokemon.all
   end
@@ -18,7 +18,17 @@ class PokemonsController < ApplicationController
   end
 
   def edit
-    
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+    @pokemon = Pokemon.find(params[:id])
+    @pokemon.pokeballs.destroy(pokeball)
+    redirect to pokemons_path
   end
 
   private
@@ -29,5 +39,5 @@ class PokemonsController < ApplicationController
 
   def authenticate
     redirect_to new_session_path unless logged_in?
-end
+  end
 end

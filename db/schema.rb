@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_193036) do
+ActiveRecord::Schema.define(version: 2019_01_03_233309) do
 
   create_table "moves", force: :cascade do |t|
     t.string "name"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2018_12_28_193036) do
     t.string "pokemon_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "imgurl"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,6 +50,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_193036) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "password_digest"
+    t.string "img_url"
   end
 
 end

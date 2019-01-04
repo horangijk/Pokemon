@@ -1,8 +1,11 @@
+<h3>Username cannot be used twice. </h3>
 
 <%= form_for @user do |f| %>
 <%= f.label :username %>
 <%= f.text_field :username %><br>
 <%= f.label :password %>
 <%= f.password_field :password %><br>
+<%= f.label :img_url %>
+<%= f.text_field :img_url %>
 <%= f.submit %>
 <% end %>
